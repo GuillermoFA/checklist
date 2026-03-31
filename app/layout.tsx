@@ -7,9 +7,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Checklist Vehicular - Transportes Yireh',
+  title: 'Checklist - Transportes Yireh',
   description: 'Sistema de gestión de checklist vehicular para conductores y prevencionistas',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
