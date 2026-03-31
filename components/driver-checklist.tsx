@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 import { 
   ArrowLeft, 
   Check, 
@@ -152,6 +153,17 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
     return () => clearInterval(interval);
   }, [saveDraftData]);
 
+  // Resetear scroll al cambiar de sección
+  useEffect(() => {
+    // Si la página usa scroll nativo del window
+    window.scrollTo({ top: 0, behavior: "instant" });
+    
+    // Si la página usa scroll interno del contenedor
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [currentCategoryIndex]);
+
   const handleVehicleInfoSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -262,21 +274,19 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
     };
     saveSubmission(submission);
     clearDraft();
-    alert("Checklist enviado correctamente");
+    toast.success("Checklist enviado correctamente");
     onBack();
   };
 
   const goToNextSection = () => {
     if (currentCategoryIndex < categories.length - 1) {
       setCurrentCategoryIndex(prev => prev + 1);
-      scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const goToPrevSection = () => {
     if (currentCategoryIndex > 0) {
       setCurrentCategoryIndex(prev => prev - 1);
-      scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -639,7 +649,6 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
                 key={cat}
                 onClick={() => {
                   setCurrentCategoryIndex(idx);
-                  scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className={`w-3 h-3 rounded-full transition-all ${
                   isCurrent 
