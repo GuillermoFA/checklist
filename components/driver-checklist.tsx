@@ -383,7 +383,7 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
   return (
     <main className="min-h-screen bg-background flex flex-col">
       {/* Sticky Top Bar */}
-      <header className="sticky top-0 z-20 bg-primary text-primary-foreground p-4 shadow-sm">
+      <header className="sticky top-0 z-20 bg-primary text-primary-foreground p-1 shadow-sm">
         <div className="flex items-center justify-between">
           <button 
             onClick={onBack} 
@@ -581,11 +581,6 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
 
       {/* Bottom Navigation - Fixed */}
       <div className="fixed bottom-0 left-0 right-0 bg-card border-t-2 p-4 shadow-lg z-30">
-        {lastSaved && (
-          <p className="text-xs text-muted-foreground text-center mb-2">
-            Guardado: {lastSaved.toLocaleTimeString()}
-          </p>
-        )}
         
         <div className="flex gap-3 max-w-lg mx-auto">
           {!isFirstSection && (
