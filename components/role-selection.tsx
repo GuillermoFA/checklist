@@ -47,15 +47,14 @@ export function RoleSelection({ onRoleSelect }: RoleSelectionProps) {
   };
 
   return (
-    <main className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
+    <main className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-            <Truck className="w-8 h-8 text-primary" />
+          <div className="inline-flex items-center justify-center w-32 h-32">
+            <img src="/icon transportes.png" alt="Icono de Transportes Yireh" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">Checklist</h1>
-          <p className="text-muted-foreground">Transportes Yireh</p>
         </div>
 
         {/* Role Cards */}
@@ -67,8 +66,8 @@ export function RoleSelection({ onRoleSelect }: RoleSelectionProps) {
             >
               <CardHeader className="pb-2">
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-full bg-success/10">
-                    <Truck className="w-6 h-6 text-success" />
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Truck className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <CardTitle className="text-lg">Soy Conductor</CardTitle>
@@ -77,7 +76,7 @@ export function RoleSelection({ onRoleSelect }: RoleSelectionProps) {
                 </div>
               </CardHeader>
               <CardContent>
-                <Button className="w-full h-14 text-lg bg-success hover:bg-success/90 text-success-foreground">
+                <Button className="w-full h-14 text-lg bg-primary hover:bg-primary/90 text-primary-foreground">
                   Iniciar Checklist
                 </Button>
               </CardContent>

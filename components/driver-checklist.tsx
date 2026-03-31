@@ -382,9 +382,9 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
 
   return (
     <main className="min-h-screen bg-background flex flex-col">
-      {/* Header with Section */}
-      <header className="sticky top-0 z-20 bg-primary text-primary-foreground p-4 rounded-b-3xl shadow-lg">
-        <div className="flex items-center justify-between mb-3">
+      {/* Sticky Top Bar */}
+      <header className="sticky top-0 z-20 bg-primary text-primary-foreground p-4 shadow-sm">
+        <div className="flex items-center justify-between">
           <button 
             onClick={onBack} 
             className="p-2 -ml-2 rounded-full hover:bg-primary-foreground/10 active:bg-primary-foreground/20"
@@ -393,29 +393,6 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
           </button>
           <ProgressCircle current={answeredCount} total={totalQuestions} />
         </div>
-        
-        {/* Section Indicator */}
-        <div className="flex items-center gap-3 bg-primary-foreground/10 rounded-2xl p-3">
-          <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center">
-            {categoryIcons[currentCategory] || <CircleCheck className="w-8 h-8" />}
-          </div>
-          <div className="flex-1">
-            <p className="text-primary-foreground/70 text-sm font-medium">
-              Sección {currentCategoryIndex + 1} de {categories.length}
-            </p>
-            <p className="text-primary-foreground font-bold text-lg">
-              {currentCategory}
-            </p>
-          </div>
-          <div className="text-right">
-            <p className="text-primary-foreground font-bold text-lg">
-              {sectionAnsweredCount}/{currentQuestions.length}
-            </p>
-            <p className="text-primary-foreground/70 text-xs font-medium">
-              respondidas
-            </p>
-          </div>
-        </div>
       </header>
 
       {/* Scrollable Questions Container */}
@@ -423,6 +400,31 @@ export function DriverChecklist({ onBack }: DriverChecklistProps) {
         ref={scrollContainerRef}
         className="flex-1 overflow-y-auto pb-32"
       >
+        {/* Section Indicator (Scrolls with content) */}
+        <div className="bg-primary text-primary-foreground px-4 pb-4 rounded-b-3xl shadow-lg mb-6">
+          <div className="flex items-center gap-3 bg-primary-foreground/10 rounded-2xl p-3">
+            <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center">
+              {categoryIcons[currentCategory] || <CircleCheck className="w-8 h-8" />}
+            </div>
+            <div className="flex-1">
+              <p className="text-primary-foreground/70 text-sm font-medium">
+                Sección {currentCategoryIndex + 1} de {categories.length}
+              </p>
+              <p className="text-primary-foreground font-bold text-lg">
+                {currentCategory}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-primary-foreground font-bold text-lg">
+                {sectionAnsweredCount}/{currentQuestions.length}
+              </p>
+              <p className="text-primary-foreground/70 text-xs font-medium">
+                respondidas
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="p-4 space-y-6">
           {currentQuestions.map((question, idx) => {
             const answer = answers[question.id];
